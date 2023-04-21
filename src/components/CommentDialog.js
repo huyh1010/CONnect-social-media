@@ -8,12 +8,13 @@ import {
 import React from "react";
 import Dialog from "@mui/material/Dialog";
 import { useDispatch } from "react-redux";
-import { deletePost } from "../features/post/postSlice";
 
-function ConfirmDeletePost({ isOpen, closeDialog, id }) {
+import { deleteComment } from "../features/comment/commentSlice";
+
+function ConfirmDeleteComment({ isOpen, closeDialog, id, postId }) {
   const dispatch = useDispatch();
   const handleDelete = (id) => {
-    dispatch(deletePost(id)).then(() => closeDialog());
+    dispatch(deleteComment({ id, postId })).then(() => closeDialog());
   };
   const handleExit = () => {
     closeDialog();
@@ -30,7 +31,7 @@ function ConfirmDeletePost({ isOpen, closeDialog, id }) {
       <DialogTitle id="alert-dialog-title">{"Please Confirm..."}</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          Do you want to delete this post?
+          Do you want to delete this comment?
         </DialogContentText>
       </DialogContent>
       <DialogActions>
@@ -43,4 +44,4 @@ function ConfirmDeletePost({ isOpen, closeDialog, id }) {
   );
 }
 
-export default ConfirmDeletePost;
+export default ConfirmDeleteComment;

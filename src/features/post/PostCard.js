@@ -21,12 +21,11 @@ import CommentForm from "../comment/CommentForm";
 import { styled, alpha } from "@mui/material/styles";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import { useDispatch } from "react-redux";
-import { deletePost } from "./postSlice";
 
 import EditPost from "./EditPost";
-import { openDialog } from "../dialog/dialogSlice";
-import Dialog from "../../components/Dialog";
+
+import { useState } from "react";
+import ConfirmDeletePost from "../../components/Dialog";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -88,18 +87,23 @@ const style = {
 function PostCard({ post }) {
   const [openModal, setOpenModal] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const dispatch = useDispatch();
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeDialog = () => {
+    setIsOpen(false);
+  };
+  const openDialog = () => {
+    setIsOpen(true);
+  };
 
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
-  };
-
-  const handleDelete = (id) => {
-    dispatch(deletePost(id));
   };
 
   const OpenModal = () => {
@@ -108,6 +112,7 @@ function PostCard({ post }) {
   const CloseModal = () => {
     setOpenModal(false);
   };
+
   return (
     <Card>
       <CardHeader
@@ -152,16 +157,20 @@ function PostCard({ post }) {
                 <EditIcon />
                 Edit
               </MenuItem>
-              <MenuItem onClick={() => handleDelete(post._id)} disableRipple>
+              <MenuItem onClick={openDialog} disableRipple>
                 <DeleteIcon />
                 Delete
               </MenuItem>
-              {/* <Divider sx={{ my: 0.5 }} /> */}
             </StyledMenu>
           </div>
         }
       />
 
+      <ConfirmDeletePost
+        closeDialog={closeDialog}
+        isOpen={isOpen}
+        id={post._id}
+      />
       <Modal
         open={openModal}
         onClose={CloseModal}

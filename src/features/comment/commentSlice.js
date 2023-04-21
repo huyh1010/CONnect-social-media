@@ -51,9 +51,10 @@ const slice = createSlice({
       state.isLoading = false;
       state.error = null;
       const { id, postId } = action.payload;
-      console.log("post", state.commentsByPost[postId]);
+      delete state.commentsById[id];
+      state.totalCommentsByPost[postId]--;
 
-      state.commentsByPost = state.commentsByPost[postId].filter(
+      state.commentsByPost[postId] = state.commentsByPost[postId].filter(
         (commentId) => commentId !== id
       );
     },

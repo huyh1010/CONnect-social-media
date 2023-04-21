@@ -60,11 +60,10 @@ const slice = createSlice({
       state.error = null;
 
       const { id } = action.payload;
-      if (state.currentPagePosts.length > 0) {
-        state.currentPagePosts = state.currentPagePosts.filter(
-          (postId) => postId !== id
-        );
-      }
+      delete state.postsById[id];
+      state.currentPagePosts = state.currentPagePosts.filter(
+        (postId) => postId !== id
+      );
     },
     editPostSuccess(state, action) {
       state.isLoading = false;

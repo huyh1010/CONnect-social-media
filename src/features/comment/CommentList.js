@@ -24,7 +24,6 @@ function CommentList({ postId }) {
     }),
     shallowEqual
   );
-  console.log(commentsByPost);
 
   useEffect(() => {
     if (postId) dispatch(getComment({ postId }));

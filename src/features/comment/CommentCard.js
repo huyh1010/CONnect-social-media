@@ -9,13 +9,13 @@ import {
   Typography,
   alpha,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { fDate } from "../../utils/formatTime";
 import CommentReactions from "./CommentReactions";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import styled from "@emotion/styled";
-import { useDispatch } from "react-redux";
-import { deleteComment } from "./commentSlice";
+
+import ConfirmDeleteComment from "../../components/CommentDialog";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -63,16 +63,22 @@ const StyledMenu = styled((props) => (
 function CommentCard({ comment, postId }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const dispatch = useDispatch();
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeDialog = () => {
+    setIsOpen(false);
+  };
+  const openDialog = () => {
+    setIsOpen(true);
+  };
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const handleDelete = (id) => {
-    dispatch(deleteComment({ id, postId }));
-  };
+
   return (
     <Stack direction="row" spacing={2}>
       <Avatar src={comment?.author?.avatarUrl} alt={comment?.author?.name} />
@@ -109,11 +115,15 @@ function CommentCard({ comment, postId }) {
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
-          onClick={() => handleDelete(comment._id)}
+          onClick={openDialog}
         >
           <MenuItem disableRipple>Delete Comment</MenuItem>
-
-          {/* <Divider sx={{ my: 0.5 }} /> */}
+          <ConfirmDeleteComment
+            closeDialog={closeDialog}
+            isOpen={isOpen}
+            id={comment._id}
+            postId={postId}
+          />
         </StyledMenu>
       </div>
     </Stack>

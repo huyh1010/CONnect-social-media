@@ -1,7 +1,8 @@
 # CONnect Social Media App with React and Redux
 
 A simple social media application made with the following features:
-UI Display:
+
+### UI Display:
 
 - Login Page
 - User's homepage
@@ -10,7 +11,9 @@ UI Display:
 - An incoming (sent by other users) and outgoing (sent by users) friend request.
 - An "Add" Page where user can see a list of people who had registered for this app.
 - A Setting page where user can update his/her personal information
-  User:
+
+### User:
+
 - can post/delete his or her post
 - can post/delete his or her commnet
 - can update their personal information on the setting page (ex: profile picture, job title, social media links...etc )

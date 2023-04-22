@@ -179,7 +179,7 @@ function PostCard({ post }) {
       >
         <Box sx={{ ...style, width: 600 }}>
           <EditPost
-            postId={post._id}
+            post={post}
             CloseModal={CloseModal}
             handleClose={handleClose}
           />

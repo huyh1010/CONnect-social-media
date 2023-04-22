@@ -10,16 +10,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { editPost } from "./postSlice";
 import useAuth from "../../hooks/useAuth";
 
-const defaultValues = {
-  content: "",
-  image: "",
-};
-
 const loginSchema = yup.object().shape({
   content: yup.string().required("Post is required"),
 });
 
-function EditPost({ postId, CloseModal, handleClose }) {
+function EditPost({ post, CloseModal, handleClose }) {
+  const defaultValues = {
+    content: post?.content || "",
+    image: post?.image || "",
+  };
+
+  const postId = post._id;
+
   const dispatch = useDispatch();
   const { isLoading } = useSelector((state) => state.post);
   const methods = useForm({

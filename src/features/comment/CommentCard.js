@@ -62,12 +62,13 @@ const StyledMenu = styled((props) => (
 
 function CommentCard({ comment, postId }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+  // const open = Boolean(anchorEl);
 
   const [isOpen, setIsOpen] = useState(false);
 
   const closeDialog = () => {
     setIsOpen(false);
+    setAnchorEl(null);
   };
   const openDialog = () => {
     setIsOpen(true);
@@ -107,13 +108,14 @@ function CommentCard({ comment, postId }) {
         <IconButton onClick={handleClick}>
           <MoreVertIcon sx={{ fontSize: 30 }} />
         </IconButton>
+
         <StyledMenu
           id="demo-customized-menu"
           MenuListProps={{
             "aria-labelledby": "demo-customized-button",
           }}
           anchorEl={anchorEl}
-          open={open}
+          open={Boolean(anchorEl)}
           onClose={handleClose}
           onClick={openDialog}
         >

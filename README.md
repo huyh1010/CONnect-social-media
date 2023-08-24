@@ -15,6 +15,73 @@
 
 A simple social media application made with the following features:
 
+
+## Installation
+
+To have this app running on your local computer, please follow the below steps:
+
+Clone repository
+
+```javascript
+$ git clone https://github.com/huyh1010/HomeTech-Space-FE.git
+```
+
+Navigate to the project folder:
+
+```javascript
+$ cd CONnect-social-media
+```
+
+Install project dependencies:
+
+```javascript
+$ npm install
+```
+
+Set up environment variables (create an .env file)
+
+```javascript
+REACT_APP_BACKEND_API = "";
+REACT_APP_CLOUDINARY_CLOUD_NAME = "";
+REACT_APP_CLOUDINARY_UPLOAD_PRESET = "";
+```
+
+REACT_APP_BACKEND_API - enter the following link for api
+
+```javascript
+REACT_APP_BACKEND_API = "https://codercomm-api-dot-cs-platform-306304.et.r.appspot.com/api";
+```
+
+REACT_APP_CLOUDINARY_CLOUD_NAME & REACT_APP_CLOUDINARY_UPLOAD_PRESET
+
+1. Navigate to <a href="https://cloudinary.com/" target="_blank">Cloudinary</a> and sign in.
+2. Once signed in, you will be navigate to the Dashboard.
+3. In the Dashboard section, will find **Cloud Name** section. Copy the name of the **Cloud Name** and place it into your **REACT_APP_CLOUDINARY_CLOUD_NAME**
+4. ![Screenshot 2023-08-13 120838](https://github.com/huyh1010/HomeTech-Space/assets/117617750/1df32fef-5124-4195-b31d-af73fb98a668)
+   ex:
+   ex:
+
+```javascript
+REACT_APP_CLOUDINARY_CLOUD_NAME = "colbyfree";
+```
+
+2. Select **Setting** > **Upload**, and then scroll to the Upload presets section.
+3. Create a new upload preset by clicking **Add upload preset** at the bottom of the upload preset list.
+4. Once finished, copy the name of the "upload" preset and place it into your **REACT_APP_CLOUDINARY_UPLOAD_PRESET** variable
+   ![Screenshot 2023-08-13 120424](https://github.com/huyh1010/HomeTech-Space/assets/117617750/f5ac315e-e6d7-45b6-9346-ab4eb82e664e)
+   ex:
+
+```javascript
+REACT_APP_CLOUDINARY_UPLOAD_PRESET = "ml_default";
+```
+
+Run the project:
+
+```javascript
+$ npm start
+```
+
+
 ### UI Display:
 
 - Login Page
